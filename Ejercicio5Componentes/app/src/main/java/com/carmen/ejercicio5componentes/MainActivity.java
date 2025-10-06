@@ -17,6 +17,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
                     return insets;
 
                 });
+
             //declarar la variable del togglebutton
             ToggleButton toggleButton = findViewById(R.id.toggleButton);
 
@@ -45,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
             //declarar la variable de los botones
             Button button = findViewById(R.id.button);
-            ImageButton imageButton = findViewById(R.id.imageButton);
             Button button4 = findViewById(R.id.button4);
+            ImageButton imageButton = findViewById(R.id.imageButton);
 
             //declarar la variable de la ratingbar
             RatingBar ratingbar = findViewById(R.id.ratingBar);
@@ -67,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
             //declarar la variable de los textview
             TextView textView7 = findViewById(R.id.textView7);
+            TextView textView5 = findViewById(R.id.textView5);
+            TextView textView3 = findViewById(R.id.textView3);
 
             //la funcion del boton de arriba que funcionara como un boton de reseteo
             button.setOnClickListener(new View.OnClickListener() {
@@ -75,34 +79,145 @@ public class MainActivity extends AppCompatActivity {
                     checkBox3.setChecked(false);
                     checkBox2.setChecked(false);
                     checkBox.setChecked(false);
+                    radioButton2.setChecked(false);
+                    radioButton.setChecked(false);
+                    ratingbar.setRating(0);
+                    editText.setText(null);
+                    seekBar.setProgress(0);
+                    toggleButton.setChecked(false);
+                    switch1.setChecked(false);
+                }
+            });
 
+            //la funcion del boton con imagen para que aparezca un contador adyacente
+            button4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v){
+                    int contador=0;
+                    int incremento=1;
+
+                    if (!checkBox2.isChecked()) incremento=1;
+                    else  incremento=-1;
+
+                    int valor=0;
+                    try {
+                        valor = Integer.parseInt(textView3.getText().toString())+incremento;
+                    } catch (NumberFormatException ex){
+                        valor=0;
+                    }
+                       textView3.setText(String.valueOf(valor));
+
+
+                    /*
+                      esta es una solucion alternativa:
+
+                        if (textView3.getText().equals("ImageButton y botón con icono")) {
+                            //contador = 0;
+                            textView3.setText(String.valueOf(contador));
+                        } else {
+                            contador = Integer.parseInt(textView3.getText().toString());
+                            contador+=incremento;
+                            textView3.setText(String.valueOf(contador));
+                        }
+                    */
+
+                    /*
+                      Esta es la solucion que hice inicialmente
+
+                        if(!checkBox2.isChecked()) {
+                                if (textView3.getText().equals("ImageButton y botón con icono")) {
+                                    //contador = 0;
+                                    textView3.setText(String.valueOf(contador));
+                                } else {
+                                    contador = Integer.parseInt(textView3.getText().toString());
+                                    contador++;
+                                    textView3.setText(String.valueOf(contador));
+                                }
+                        } else {
+                                if (textView3.getText().equals("ImageButton y botón con icono")) {
+                                    contador = 0;
+                                    textView3.setText(String.valueOf(contador));
+                                } else {
+                                    contador = Integer.parseInt(textView3.getText().toString());
+                                    contador--;
+                                    textView3.setText(String.valueOf(contador));
+                                }
+                        }
+                     */
+                }
+            });
+
+            //que aparezca un toast al marcar un radio button informando de cual esta activado
+            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+
+                @Override
+                public void onCheckedChanged(@NonNull RadioGroup group, int checkedId) {
+                    if (radioButton.isChecked()){
+                        Toast.makeText(MainActivity.this, "RadioButton1", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(MainActivity.this, "RadioButton2", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+            //funcion de la seekbar para que el textview muestre su valor
+            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    textView5.setText(String.valueOf(progress));
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+
+                }
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
 
                 }
             });
+
 
             //la funcion del togglebutton para que segun este activo o desactivo cambie el estado del checkbox
             toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                    checkBox3.setChecked(!isChecked);
+
+                    /*
+                    esta es la solucion que hice yo
+
                     if (isChecked) {
                         checkBox3.setChecked(true);
                     } else {
                         checkBox3.setChecked(false);
                     }
+                    */
+
                 }
             });
 
             //la funcion del switch para que cambie el texto a activo o desactivo
             switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (isChecked) {
-                            textView7.setText("Activo");
-                        } else {
-                            textView7.setText("Desactivo");
-                        }
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                    textView7.setText(isChecked?"Activo":"Desactivo");
+
+                    /*
+                    Esta es la solucion que tenia yo:
+
+                    if (isChecked) {
+                        textView7.setText("Activo");
+                    } else {
+                        textView7.setText("Desactivo");
                     }
+                    */
+                }
             });
     }
 }
