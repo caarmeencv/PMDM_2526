@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- documento xml para las dimensiones, es decir, margenes, tamaño de componentes, padings, etc-->
+
+    <dimen name="margen_general">8dp</dimen>
+    <dimen name="margen_grande">40dp</dimen>
+    <dimen name="margen_peque">1dp</dimen>
+    <dimen name="sin_margen">0dp</dimen>
+
+</resources>

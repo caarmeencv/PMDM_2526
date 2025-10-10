@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ejercicio5Componentes</string>
+    <string name="boton">Botón</string>
+    <string name="text1">ImageButton e botón con icona</string>
+    <string name="text2">ToogleButton marcado ao arrincar</string>
+    <string name="desactivo">Desactivo</string>
+    <string name="activo">Activo</string>
+    <string name="activado">Activado</string>
+    <string name="desactivado">Desactivado</string>
+    <string name="email">" Introduce o teu Email"</string>
+</resources>

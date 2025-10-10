@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             button4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v){
-                    int contador=0;
+
                     int incremento=1;
 
                     if (!checkBox2.isChecked()) incremento=1;
@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                     /*
                       esta es una solucion alternativa:
 
+                        int contador=0;
                         if (textView3.getText().equals("ImageButton y botón con icono")) {
                             //contador = 0;
                             textView3.setText(String.valueOf(contador));
@@ -124,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
                     /*
                       Esta es la solucion que hice inicialmente
 
+                        int contador=0;
                         if(!checkBox2.isChecked()) {
                                 if (textView3.getText().equals("ImageButton y botón con icono")) {
                                     //contador = 0;
@@ -153,10 +155,10 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onCheckedChanged(@NonNull RadioGroup group, int checkedId) {
                     if (radioButton.isChecked()){
-                        Toast.makeText(MainActivity.this, "RadioButton1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, getString(R.string.uno), Toast.LENGTH_SHORT).show();
                     }
-                    else{
-                        Toast.makeText(MainActivity.this, "RadioButton2", Toast.LENGTH_SHORT).show();
+                    else if (radioButton2.isChecked()){
+                        Toast.makeText(MainActivity.this, getString(R.string.dos), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -206,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                    textView7.setText(isChecked?"Activo":"Desactivo");
+                    textView7.setText(isChecked?getString(R.string.activo):getString(R.string.desactivo));
 
                     /*
                     Esta es la solucion que tenia yo:

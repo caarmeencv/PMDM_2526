@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ejercicio5Componentes</string>
+    <string name="boton">Button</string>
+    <string name="text1">ImageButton and button with an icon</string>
+    <string name="text2">ToggleButton checked at startup</string>
+    <string name="desactivo">Off</string>
+    <string name="activo">On</string>
+    <string name="activado">On</string>
+    <string name="desactivado">Off</string>
+    <string name="email">" Introduce your email"</string>
+</resources>

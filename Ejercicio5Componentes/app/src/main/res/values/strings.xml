@@ -1,3 +1,19 @@
 <resources>
+    <!-- Strings de todo el texto que aparece en la aplicacion para poder traducirlo luego-->
     <string name="app_name">Ejercicio5Componentes</string>
+    <string name="boton">Botón</string>
+    <string name="checkbox" translatable="false">CheckBox</string>
+    <string name="text1">ImageButton y botón con icono</string>
+    <string name="text2">ToggleButton marcado al arrancar</string>
+    <string name="seekbar" translatable="false">SeekBar</string>
+    <string name="ratingbar" translatable="false">RatingBar</string>
+    <string name="radiobutton" translatable="false">RadioButton</string>
+    <string name="desactivo">Desactivo</string>
+    <string name="activo">Activo</string>
+    <string name="activado">Activado</string>
+    <string name="desactivado">Desactivado</string>
+    <string name="email"> Introduce tu Email</string>
+    <string name="uno" translatable="false">RadioButton1</string>
+    <string name="dos" translatable="false">RadioButton2</string>
+    <string name="numero" translatable="false">50</string>
 </resources>
