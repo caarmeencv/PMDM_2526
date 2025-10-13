@@ -7,4 +7,41 @@
     android:layout_height="match_parent"
     tools:context=".Secundaria">
 
+    <RatingBar
+        android:id="@+id/ratingBar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sin_margen"
+        android:layout_marginTop="@dimen/sin_margen"
+        android:layout_marginEnd="@dimen/sin_margen"
+        android:layout_marginBottom="@dimen/sin_margen"
+        android:backgroundTint="@color/yellow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sin_margen"
+        android:layout_marginEnd="@dimen/sin_margen"
+        android:layout_marginBottom="@dimen/margen_general"
+        android:text="@string/rating2"
+        app:layout_constraintBottom_toTopOf="@+id/ratingBar2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sin_margen"
+        android:layout_marginTop="@dimen/margen_general"
+        android:layout_marginEnd="@dimen/sin_margen"
+        android:text="@string/atras"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

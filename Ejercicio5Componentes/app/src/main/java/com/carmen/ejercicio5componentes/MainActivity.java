@@ -1,5 +1,6 @@
 package com.carmen.ejercicio5componentes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,81 +32,82 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-                    Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-                    v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-                    return insets;
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
 
-                });
+        });
 
-            //declarar la variable del togglebutton
-            ToggleButton toggleButton = findViewById(R.id.toggleButton);
+        //declarar la variable del togglebutton
+        ToggleButton toggleButton = findViewById(R.id.toggleButton);
 
-            //declarar la variable de las checkbox
-            CheckBox checkBox = findViewById(R.id.checkBox);
-            CheckBox checkBox2 = findViewById(R.id.checkBox2);
-            CheckBox checkBox3 = findViewById(R.id.checkBox3);
+        //declarar la variable de las checkbox
+        CheckBox checkBox = findViewById(R.id.checkBox);
+        CheckBox checkBox2 = findViewById(R.id.checkBox2);
+        CheckBox checkBox3 = findViewById(R.id.checkBox3);
 
-            //declarar la variable de los botones
-            Button button = findViewById(R.id.button);
-            Button button4 = findViewById(R.id.button4);
-            ImageButton imageButton = findViewById(R.id.imageButton);
+        //declarar la variable de los botones
+        Button button = findViewById(R.id.button);
+        Button button4 = findViewById(R.id.button4);
+        ImageButton imageButton = findViewById(R.id.imageButton);
 
-            //declarar la variable de la ratingbar
-            RatingBar ratingbar = findViewById(R.id.ratingBar);
+        //declarar la variable de la ratingbar
+        RatingBar ratingbar = findViewById(R.id.ratingBar);
 
-            //declarar la variable de la seekbar
-            SeekBar seekBar = findViewById(R.id.seekBar);
+        //declarar la variable de la seekbar
+        SeekBar seekBar = findViewById(R.id.seekBar);
 
-            //declarar la variable del edittext
-            EditText editText = findViewById(R.id.editTextTextEmailAddress);
+        //declarar la variable del edittext
+        EditText editText = findViewById(R.id.editTextTextEmailAddress);
 
-            //declarar la variable del switch
-            Switch switch1 = findViewById(R.id.switch1);
+        //declarar la variable del switch
+        Switch switch1 = findViewById(R.id.switch1);
 
-            //declarar la variable de los radiobutton
-            RadioButton radioButton = findViewById(R.id.radioButton);
-            RadioButton radioButton2 = findViewById(R.id.radioButton2);
-            RadioGroup radioGroup = findViewById(R.id.radioGroup);
+        //declarar la variable de los radiobutton
+        RadioButton radioButton = findViewById(R.id.radioButton);
+        RadioButton radioButton2 = findViewById(R.id.radioButton2);
+        RadioGroup radioGroup = findViewById(R.id.radioGroup);
 
-            //declarar la variable de los textview
-            TextView textView7 = findViewById(R.id.textView7);
-            TextView textView5 = findViewById(R.id.textView5);
-            TextView textView3 = findViewById(R.id.textView3);
+        //declarar la variable de los textview
+        TextView textView7 = findViewById(R.id.textView7);
+        TextView textView5 = findViewById(R.id.textView5);
+        TextView textView3 = findViewById(R.id.textView3);
 
-            //la funcion del boton de arriba que funcionara como un boton de reseteo
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v){
-                    checkBox3.setChecked(false);
-                    checkBox2.setChecked(false);
-                    checkBox.setChecked(false);
-                    radioButton2.setChecked(false);
-                    radioButton.setChecked(false);
-                    ratingbar.setRating(0);
-                    editText.setText(null);
-                    seekBar.setProgress(0);
-                    toggleButton.setChecked(false);
-                    switch1.setChecked(false);
+        //la funcion del boton de arriba que funcionara como un boton de reseteo
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkBox3.setChecked(false);
+                checkBox2.setChecked(false);
+                checkBox.setChecked(false);
+                radioButton2.setChecked(false);
+                radioButton.setChecked(false);
+                ratingbar.setRating(0);
+                editText.setText(null);
+                seekBar.setProgress(0);
+                toggleButton.setChecked(false);
+                switch1.setChecked(false);
+                textView3.setText(String.valueOf(0));
+            }
+        });
+
+        //la funcion del boton con imagen para que aparezca un contador adyacente
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int incremento = 1;
+
+                if (!checkBox2.isChecked()) incremento = 1;
+                else incremento = -1;
+
+                int valor = 0;
+                try {
+                    valor = Integer.parseInt(textView3.getText().toString()) + incremento;
+                } catch (NumberFormatException ex) {
+                    valor = 0;
                 }
-            });
-
-            //la funcion del boton con imagen para que aparezca un contador adyacente
-            button4.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v){
-
-                    int incremento=1;
-
-                    if (!checkBox2.isChecked()) incremento=1;
-                    else  incremento=-1;
-
-                    int valor=0;
-                    try {
-                        valor = Integer.parseInt(textView3.getText().toString())+incremento;
-                    } catch (NumberFormatException ex){
-                        valor=0;
-                    }
-                       textView3.setText(String.valueOf(valor));
+                textView3.setText(String.valueOf(valor));
 
 
                     /*
@@ -146,48 +148,47 @@ public class MainActivity extends AppCompatActivity {
                                 }
                         }
                      */
+            }
+        });
+
+        //que aparezca un toast al marcar un radio button informando de cual esta activado
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(@NonNull RadioGroup group, int checkedId) {
+                if (radioButton.isChecked()) {
+                    Toast.makeText(MainActivity.this, getString(R.string.uno), Toast.LENGTH_SHORT).show();
+                } else if (radioButton2.isChecked()) {
+                    Toast.makeText(MainActivity.this, getString(R.string.dos), Toast.LENGTH_SHORT).show();
                 }
-            });
+            }
+        });
 
-            //que aparezca un toast al marcar un radio button informando de cual esta activado
-            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+        //funcion de la seekbar para que el textview muestre su valor
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                textView5.setText(String.valueOf(progress));
+            }
 
-                @Override
-                public void onCheckedChanged(@NonNull RadioGroup group, int checkedId) {
-                    if (radioButton.isChecked()){
-                        Toast.makeText(MainActivity.this, getString(R.string.uno), Toast.LENGTH_SHORT).show();
-                    }
-                    else if (radioButton2.isChecked()){
-                        Toast.makeText(MainActivity.this, getString(R.string.dos), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
 
-            //funcion de la seekbar para que el textview muestre su valor
-            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                @Override
-                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                    textView5.setText(String.valueOf(progress));
-                }
+            }
 
-                @Override
-                public void onStartTrackingTouch(SeekBar seekBar) {
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
 
-                }
-
-                @Override
-                public void onStopTrackingTouch(SeekBar seekBar) {
-
-                }
-            });
+            }
+        });
 
 
-            //la funcion del togglebutton para que segun este activo o desactivo cambie el estado del checkbox
-            toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        //la funcion del togglebutton para que segun este activo o desactivo cambie el estado del checkbox
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                    checkBox3.setChecked(!isChecked);
+                checkBox3.setChecked(!isChecked);
 
                     /*
                     esta es la solucion que hice yo
@@ -199,16 +200,16 @@ public class MainActivity extends AppCompatActivity {
                     }
                     */
 
-                }
-            });
+            }
+        });
 
-            //la funcion del switch para que cambie el texto a activo o desactivo
-            switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        //la funcion del switch para que cambie el texto a activo o desactivo
+        switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                    textView7.setText(isChecked?getString(R.string.activo):getString(R.string.desactivo));
+                textView7.setText(isChecked ? getString(R.string.activo) : getString(R.string.desactivo));
 
                     /*
                     Esta es la solucion que tenia yo:
@@ -219,7 +220,25 @@ public class MainActivity extends AppCompatActivity {
                         textView7.setText("Desactivo");
                     }
                     */
-                }
-            });
+
+
+            }
+        });
+
+        float estrellas = getIntent().getFloatExtra("numEstrellas", 0f);
+        ratingbar.setRating(estrellas);
+
+        //metodo para que al darle al imagebutton me abra la activity secundaria
+        imageButton.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   Intent intentSec = new Intent(MainActivity.this, Secundaria.class);
+                   intentSec.putExtra("numEstrellas", ratingbar.getRating());
+                   startActivity(intentSec);
+               }
+           }
+        );
+
     }
+
 }

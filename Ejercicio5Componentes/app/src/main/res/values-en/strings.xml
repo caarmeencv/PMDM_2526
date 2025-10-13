@@ -9,4 +9,6 @@
     <string name="activado">On</string>
     <string name="desactivado">Off</string>
     <string name="email">" Introduce your email"</string>
+    <string name="rating2">Second Activity`s RatingBar</string>
+    <string name="atras">Back</string>
 </resources>

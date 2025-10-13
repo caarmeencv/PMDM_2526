@@ -16,4 +16,6 @@
     <string name="uno" translatable="false">RadioButton1</string>
     <string name="dos" translatable="false">RadioButton2</string>
     <string name="numero" translatable="false">50</string>
+    <string name="rating2">RatingBar de la activity secundaria</string>
+    <string name="atras">Volver</string>
 </resources>
