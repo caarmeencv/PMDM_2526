@@ -11,4 +11,5 @@
     <string name="email">" Introduce your email"</string>
     <string name="rating2">Second Activity`s RatingBar</string>
     <string name="atras">Back</string>
+    <string name="rating">"RatingBar`s rating is: "</string>
 </resources>

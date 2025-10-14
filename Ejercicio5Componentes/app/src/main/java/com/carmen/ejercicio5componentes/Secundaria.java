@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,6 +45,15 @@ public class Secundaria extends AppCompatActivity {
         float estrellas = getIntent().getFloatExtra("numEstrellas", 0f);
         ratingbar.setRating(estrellas);
 
+        Toast.makeText(Secundaria.this, "Rating de la Main Activity en la Secundaria", Toast.LENGTH_SHORT).show();
+
+        ratingbar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                Toast.makeText(Secundaria.this, (getString(R.string.rating) + ratingBar.getRating()), Toast.LENGTH_SHORT).show();
+            }
+        });
+
         //la accion del boton para volver a la mainActivity
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +61,8 @@ public class Secundaria extends AppCompatActivity {
                 Intent intent = new Intent(Secundaria.this, MainActivity.class);
                 intent.putExtra("numEstrellas", ratingbar.getRating());
                 startActivity(intent);
+                Toast.makeText(Secundaria.this, "Rating de la Secundaria en la Main Activity", Toast.LENGTH_SHORT).show();
+
             }
         });
 

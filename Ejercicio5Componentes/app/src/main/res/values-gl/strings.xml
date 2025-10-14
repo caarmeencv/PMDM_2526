@@ -11,4 +11,5 @@
     <string name="email">" Introduce o teu Email"</string>
     <string name="rating2">RatingBar da activity secundaria</string>
     <string name="atras">Voltar</string>
+    <string name="rating">"O rating da RatingBar is: "</string>
 </resources>

@@ -239,6 +239,13 @@ public class MainActivity extends AppCompatActivity {
            }
         );
 
+        ratingbar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                Toast.makeText(MainActivity.this, (getString(R.string.rating) + ratingBar.getRating()), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 }
