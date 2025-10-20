@@ -3,6 +3,8 @@ package com.carmen.ejercicio5componentes;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -22,6 +25,7 @@ public class Secundaria extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_secundaria);
+
         //recuperamos el intent enviado desde la activity primaria
         Intent intent  = getIntent();
 
@@ -65,8 +69,5 @@ public class Secundaria extends AppCompatActivity {
 
             }
         });
-
-
-
     }
 }

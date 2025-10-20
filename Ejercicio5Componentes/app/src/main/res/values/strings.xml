@@ -19,4 +19,10 @@
     <string name="rating2">RatingBar de la activity secundaria</string>
     <string name="atras">Volver</string>
     <string name="rating">"El rating de la RatingBar es:  "</string>
+    <string name="mncopiar" translatable="false">"Copiar"</string>
+    <string name="mnpegar" translatable="false">"Pegar"</string>
+    <string name="mnborrar" translatable="false">"Borrar"</string>
+    <string name="mnsubmenu" translatable="false">"Submenu"</string>
+    <string name="mnopcion1" translatable="false">"Opción 1"</string>
+    <string name="mnopcion2" translatable="false">"Opción 2"</string>
 </resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mborrar"
+        android:icon="@android:drawable/ic_input_delete"
+        android:title="@string/mnborrar"
+        app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/mcopiar"
+        android:icon="?attr/actionModeCopyDrawable"
+        android:title="@string/mncopiar"
+        app:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/mpegar"
+        android:icon="?attr/actionModePasteDrawable"
+        android:title="@string/mnpegar"
+        android:visible="true"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/msubmenu"
+        android:title="@string/mnsubmenu">
+        <menu>
+            <item
+                android:id="@+id/mopcion1"
+                android:title="@string/mnopcion1" />
+            <item
+                android:id="@+id/mopcion2"
+                android:title="@string/mnopcion2" />
+        </menu>
+    </item>
+</menu>

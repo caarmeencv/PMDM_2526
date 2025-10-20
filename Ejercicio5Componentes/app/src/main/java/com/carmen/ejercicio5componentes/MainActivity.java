@@ -2,6 +2,9 @@ package com.carmen.ejercicio5componentes;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -245,7 +248,41 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, (getString(R.string.rating) + ratingBar.getRating()), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.principal, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+        int id = item.getItemId();
+        if(id == R.id.mcopiar){
+            Toast.makeText(this, "Botón del menú para copiar", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else if (id == R.id.mborrar){
+            Toast.makeText(this, "Botón del menú para borrar", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else if(id == R.id.mpegar){
+            Toast.makeText(this, "Botón del menú para pegar", Toast.LENGTH_SHORT).show();
+        }
+        else if (id == R.id.msubmenu){
+            Toast.makeText(this, "Botón para abrir el submenu", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else if (id == R.id.mopcion1){
+            Toast.makeText(this, "Opción 1 del submenu", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else if (id == R.id.mopcion2){
+            Toast.makeText(this, "Opción 2 del submenu", Toast.LENGTH_SHORT).show();
+            return true;
+        };
+        return super.onOptionsItemSelected(item);
+    }
 }
