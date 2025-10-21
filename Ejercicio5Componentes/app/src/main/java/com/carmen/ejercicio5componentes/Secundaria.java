@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -20,6 +22,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class Secundaria extends AppCompatActivity {
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,5 +72,24 @@ public class Secundaria extends AppCompatActivity {
 
             }
         });
+
+        //declarar la action bar y cambiarle el titulo y subtitulo
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setTitle("Ejercicio 5");
+        actionbar.setSubtitle("Secundaria");
+
+        //boton de volver en el actionbar
+        actionbar.setDisplayHomeAsUpEnabled(true);
+
+    }
+    //funcion del boton de volver en el actionbar
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if (item.getItemId() == android.R.id.home){
+            Toast.makeText(this, "Vuelvo a la activity anterior", Toast.LENGTH_SHORT).show();
+            getOnBackPressedDispatcher().onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -1,5 +1,6 @@
 package com.carmen.ejercicio5componentes;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,6 +23,7 @@ import android.widget.ToggleButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         //declarar la variable de los botones
         Button button = findViewById(R.id.button);
         Button button4 = findViewById(R.id.button4);
+        Button button3 = findViewById(R.id.button3);
         ImageButton imageButton = findViewById(R.id.imageButton);
 
         //declarar la variable de la ratingbar
@@ -248,6 +251,30 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, (getString(R.string.rating) + ratingBar.getRating()), Toast.LENGTH_SHORT).show();
             }
         });
+
+        //declarar la actionbar y hacer que el boton 3 me la oculte o me la muestre
+        ActionBar actionbar = getSupportActionBar();
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(actionbar.isShowing()){
+                    actionbar.hide();
+                } else{
+                    actionbar.show();
+                }
+            }
+        });
+
+        //poner un titulo y subtitulo
+        actionbar.setTitle("Ejercicio 5");
+        actionbar.setSubtitle("Primaria");
+
+        //poner un logo en la actionbar
+        actionbar.setDisplayShowHomeEnabled(true);
+        actionbar.setDisplayUseLogoEnabled(true);
+        actionbar.setLogo(android.R.drawable.star_big_on);
+
+
     }
 
     @Override

@@ -25,4 +25,5 @@
     <string name="mnsubmenu" translatable="false">"Submenu"</string>
     <string name="mnopcion1" translatable="false">"Opción 1"</string>
     <string name="mnopcion2" translatable="false">"Opción 2"</string>
+    <string name="actionbar" translatable="false">"Action Bar"</string>
 </resources>
