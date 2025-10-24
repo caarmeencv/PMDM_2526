@@ -28,6 +28,7 @@ public class Secundaria extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_secundaria);
+        getWindow().setStatusBarColor(getColor(R.color.yellow));
 
         //recuperamos el intent enviado desde la activity primaria
         Intent intent  = getIntent();
@@ -40,6 +41,7 @@ public class Secundaria extends AppCompatActivity {
 
         //declaro el boton
         Button volver = findViewById(R.id.button2);
+        Button irTeciaria = findViewById(R.id.button6);
 
         //declaro el textview
         TextView textView8 = findViewById(R.id.textView8);
@@ -47,8 +49,7 @@ public class Secundaria extends AppCompatActivity {
         //declaro el rating bar
         RatingBar ratingbar = findViewById(R.id.ratingBar2);
 
-        //declaro el ratingbar
-        RatingBar ratingBar = findViewById(R.id.ratingBar2);
+
         float estrellas = getIntent().getFloatExtra("numEstrellas", 0f);
         ratingbar.setRating(estrellas);
 
@@ -73,6 +74,17 @@ public class Secundaria extends AppCompatActivity {
             }
         });
 
+        //la accion del boton para ir a la terciaria
+        irTeciaria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentTerciaria = new Intent(Secundaria.this, Terciaria.class);
+                startActivity(intentTerciaria);
+                Toast.makeText(Secundaria.this, "Terciaria", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
         //declarar la action bar y cambiarle el titulo y subtitulo
         ActionBar actionbar = getSupportActionBar();
         actionbar.setTitle("Ejercicio 5");
@@ -80,6 +92,9 @@ public class Secundaria extends AppCompatActivity {
 
         //boton de volver en el actionbar
         actionbar.setDisplayHomeAsUpEnabled(true);
+
+        //cambiarle el color a la navigation bar
+        getWindow().setNavigationBarColor(getColor(R.color.yellow));
 
     }
     //funcion del boton de volver en el actionbar

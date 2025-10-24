@@ -4,21 +4,34 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/app_bar_switch"
+        android:title="Switch"
+        app:actionLayout="@layout/switch_item"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/mborrar"
         android:icon="@android:drawable/ic_input_delete"
         android:title="@string/mnborrar"
-        app:showAsAction="always|withText" />
+        app:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/mcopiar"
         android:icon="?attr/actionModeCopyDrawable"
         android:title="@string/mncopiar"
-        app:showAsAction="ifRoom|withText" />
+        app:showAsAction="always" />
     <item
         android:id="@+id/mpegar"
         android:icon="?attr/actionModePasteDrawable"
         android:title="@string/mnpegar"
         android:visible="true"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/meditar"
+        android:title="@string/mneditar" />
+    <item
+        android:id="@+id/mnuevo"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="@string/mnnuevo"
+        app:showAsAction="always|withText" />
     <item
         android:id="@+id/msubmenu"
         android:title="@string/mnsubmenu">

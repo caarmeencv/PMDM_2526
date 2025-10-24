@@ -42,8 +42,22 @@
         android:layout_marginStart="@dimen/sin_margen"
         android:layout_marginTop="@dimen/margen_general"
         android:layout_marginEnd="@dimen/sin_margen"
+        android:backgroundTint="@color/purple_500"
         android:text="@string/atras"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ratingBar2" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sin_margen"
+        android:layout_marginTop="@dimen/margen_general"
+        android:layout_marginEnd="@dimen/sin_margen"
+        android:backgroundTint="@color/purple_500"
+        android:text="@string/terciaria"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

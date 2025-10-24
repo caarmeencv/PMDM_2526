@@ -2,6 +2,7 @@ package com.carmen.ejercicio5componentes;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -78,6 +79,12 @@ public class MainActivity extends AppCompatActivity {
         TextView textView7 = findViewById(R.id.textView7);
         TextView textView5 = findViewById(R.id.textView5);
         TextView textView3 = findViewById(R.id.textView3);
+        TextView textView6 = findViewById(R.id.textView6);
+        TextView textView = findViewById(R.id.textView);
+        TextView textView4 = findViewById(R.id.textView4);
+
+        //declarar la actionbar
+        ActionBar actionbar = getSupportActionBar();
 
         //la funcion del boton de arriba que funcionara como un boton de reseteo
         button.setOnClickListener(new View.OnClickListener() {
@@ -175,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 textView5.setText(String.valueOf(progress));
+                actionbar.setSubtitle(String.valueOf(progress));
             }
 
             @Override
@@ -252,8 +260,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //declarar la actionbar y hacer que el boton 3 me la oculte o me la muestre
-        ActionBar actionbar = getSupportActionBar();
+        //hacer que el boton 3 me la oculte o me la muestre
+
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -266,13 +274,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //poner un titulo y subtitulo
-        actionbar.setTitle("Ejercicio 5");
-        actionbar.setSubtitle("Primaria");
+        actionbar.setTitle("Ejercicio 5 - primaria");
+
 
         //poner un logo en la actionbar
         actionbar.setDisplayShowHomeEnabled(true);
         actionbar.setDisplayUseLogoEnabled(true);
         actionbar.setLogo(android.R.drawable.star_big_on);
+
+        //cambiarle el color a la status bar
+        getWindow().setStatusBarColor(getColor(R.color.yellow));
+
+        //cambiarle el color a la navigation bar
+        getWindow().setNavigationBarColor(getColor(R.color.yellow));
 
 
     }
@@ -281,6 +295,16 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.principal, menu);
+
+        Button button5 = menu.findItem(R.id.app_bar_switch).getActionView().findViewById(R.id.button5);
+
+        //Se gestiona la pulsacion del boton
+        button5.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Toast.makeText(MainActivity.this, "Boton del menu pulsado", Toast.LENGTH_SHORT).show();
+            }
+        });
         return true;
     }
 
@@ -293,6 +317,22 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (id == R.id.mborrar){
             Toast.makeText(this, "Botón del menú para borrar", Toast.LENGTH_SHORT).show();
+            //declarar la variable de los textview
+            TextView textView7 = findViewById(R.id.textView7);
+            TextView textView5 = findViewById(R.id.textView5);
+            TextView textView3 = findViewById(R.id.textView3);
+            TextView textView6 = findViewById(R.id.textView6);
+            TextView textView = findViewById(R.id.textView);
+            TextView textView4 = findViewById(R.id.textView4);
+            SeekBar seekBar = findViewById(R.id.seekBar);
+
+            seekBar.setProgress(0);
+            textView.setText(null);
+            textView6.setText(null);
+            textView3.setText(null);
+            textView5.setText(null);
+            textView7.setText(null);
+            textView4.setText(null);
             return true;
         }
         else if(id == R.id.mpegar){
@@ -308,6 +348,18 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (id == R.id.mopcion2){
             Toast.makeText(this, "Opción 2 del submenu", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else if (id== R.id.meditar){
+            Toast.makeText(this, "Botón del menú para editar", Toast.LENGTH_SHORT).show();
+            EditText editText = findViewById(R.id.editTextTextEmailAddress);
+            editText.setText(null);
+            return true;
+        }
+        else if (id == R.id.mnuevo){
+            Intent intentTerciaria2 = new Intent(MainActivity.this, Terciaria.class);
+            startActivity(intentTerciaria2);
+            Toast.makeText(MainActivity.this, "Terciaria", Toast.LENGTH_SHORT).show();
             return true;
         };
         return super.onOptionsItemSelected(item);

@@ -17,13 +17,16 @@
     <string name="dos" translatable="false">RadioButton2</string>
     <string name="numero" translatable="false">50</string>
     <string name="rating2">RatingBar de la activity secundaria</string>
-    <string name="atras">Volver</string>
+    <string name="atras">Primaria</string>
     <string name="rating">"El rating de la RatingBar es:  "</string>
+    <string name="terciaria" translatable="false">"Terciaria"</string>
     <string name="mncopiar" translatable="false">"Copiar"</string>
     <string name="mnpegar" translatable="false">"Pegar"</string>
     <string name="mnborrar" translatable="false">"Borrar"</string>
     <string name="mnsubmenu" translatable="false">"Submenu"</string>
     <string name="mnopcion1" translatable="false">"Opción 1"</string>
     <string name="mnopcion2" translatable="false">"Opción 2"</string>
+    <string name="mnnuevo" translatable="false">"Nuevo"</string>
+    <string name="mneditar" translatable="false">"Editar"</string>
     <string name="actionbar" translatable="false">"Action Bar"</string>
 </resources>
