@@ -12,7 +12,6 @@ import java.util.List;
 public class AdaptadorCoche extends RecyclerView.Adapter<AdaptadorCoche.CeldaCochejava>{
 
     List <Coche> coches;
-
     public AdaptadorCoche (List<Coche> coches){
         this.coches = coches;
     }
@@ -75,6 +74,8 @@ public class AdaptadorCoche extends RecyclerView.Adapter<AdaptadorCoche.CeldaCoc
         public void setFoto(ImageView foto) {
             this.foto = foto;
         }
-    }
 
+
+
+    }
 }
