@@ -9,15 +9,15 @@ import java.util.Calendar;
 
 public class Datos {
 
-    public  void watchYoutubeVideo(String id){
-        Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
-        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + id));
-        try {
-            startActivity(appIntent);
-        } catch (ActivityNotFoundException ex) {
-            startActivity(webIntent);
-        }
-    }
+//    public  void watchYoutubeVideo(String id){
+//        Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
+//        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + id));
+//        try {
+//            startActivity(appIntent);
+//        } catch (ActivityNotFoundException ex) {
+//            startActivity(webIntent);
+//        }
+//    }
 
     public ArrayList<Pelicula> rellenaPeliculas(){
 
