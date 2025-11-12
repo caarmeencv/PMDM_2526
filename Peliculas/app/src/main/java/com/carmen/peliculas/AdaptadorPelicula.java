@@ -87,5 +87,10 @@ public class AdaptadorPelicula extends RecyclerView.Adapter<AdaptadorPelicula.ce
             this.clasi = clasi;
         }
 
+        int selectedPos= RecyclerView.NO_POSITION;
+        public int getSelectedPos() {
+            return selectedPos;
+        }
+
     }
 }
