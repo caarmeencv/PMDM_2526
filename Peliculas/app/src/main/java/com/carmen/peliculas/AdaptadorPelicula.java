@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +18,30 @@ public class AdaptadorPelicula extends RecyclerView.Adapter<AdaptadorPelicula.ce
     List<Pelicula> peliculas;
     public AdaptadorPelicula (List<Pelicula> peliculas){
         this.peliculas = peliculas;
+    }
+
+    //para seleccionar elementos de la rv
+    int selectedPos = RecyclerView.NO_POSITION;
+    public int getSelectedPos () {
+        return selectedPos;
+    }
+    public void setSelectedPos(int nuevaPos) {
+        // Si se pulsa sobre el elemento marcado
+        if (nuevaPos == this.selectedPos){
+            // Se establece que no hay una posición marcada
+            this.selectedPos=RecyclerView.NO_POSITION;
+            // Se avisa al adaptador para que desmarque esa posición
+            notifyItemChanged(nuevaPos);
+        } else { // El elemento pulsado no está marcado
+            if (this.selectedPos >=0 ) { // Si ya hay otra posición marcada
+                // Se desmarca
+                notifyItemChanged(this.selectedPos);
+            }
+            // Se actualiza la nueva posición a la posición pulsada
+            this.selectedPos = nuevaPos;
+            // Se marca la nueva posición
+            notifyItemChanged(nuevaPos);
+        }
     }
 
     @NonNull
@@ -34,6 +59,13 @@ public class AdaptadorPelicula extends RecyclerView.Adapter<AdaptadorPelicula.ce
         holder.clasi.setImageResource(pelicula.getClasi());
         holder.titulo.setText(pelicula.getTitulo());
         holder.director.setText(pelicula.getDirector());
+
+        //para seleccionar un elemento
+        if (selectedPos == position) {
+            holder.itemView.setBackgroundResource(R.color.seleccionado);
+        } else {
+            holder.itemView.setBackgroundResource(R.color.celda);
+        }
     }
 
     @Override
@@ -53,6 +85,27 @@ public class AdaptadorPelicula extends RecyclerView.Adapter<AdaptadorPelicula.ce
             this.portada=itemView.findViewById(R.id.ivimagen);
             this.clasi=itemView.findViewById(R.id.ivclasi);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @ Override
+                public void onClick (View view) {
+                //getAdapterPosition devuelve la posición del view en el adaptador
+                    int posPulsada=getAdapterPosition();
+                    setSelectedPos(posPulsada);
+
+                    //If-Else para que al pulsar se cambie el tvfilm de arriba
+                    if(selectedPos > RecyclerView.NO_POSITION){
+                        MainActivity mainActivity = (MainActivity) view.getContext();
+                        TextView tvfilm = mainActivity.findViewById(R.id.tvfilm);
+                        tvfilm.setText(peliculas.get(selectedPos).getTitulo());
+
+                    } else {
+                        MainActivity mainActivity = (MainActivity) view.getContext();
+                        TextView tvfilm = mainActivity.findViewById(R.id.tvfilm);
+                        tvfilm.setText(" ");
+                    }
+                }
+            } );
+
         }
 
         public TextView getTitulo() {
@@ -64,7 +117,7 @@ public class AdaptadorPelicula extends RecyclerView.Adapter<AdaptadorPelicula.ce
         }
 
         public TextView getDirector() {
-            return titulo;
+            return director;
         }
 
         public void setDirector(TextView director) {
@@ -87,10 +140,6 @@ public class AdaptadorPelicula extends RecyclerView.Adapter<AdaptadorPelicula.ce
             this.clasi = clasi;
         }
 
-        int selectedPos= RecyclerView.NO_POSITION;
-        public int getSelectedPos() {
-            return selectedPos;
-        }
 
     }
 }

@@ -53,7 +53,12 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionbar = getSupportActionBar();
         actionbar.setBackgroundDrawable(getResources().getDrawable(R.drawable.fondomenu, getTheme()));
         actionbar.setTitle("Peliculas");
+
+        //para que me salga el numero de peliculas como subtitulo
         actionbar.setSubtitle(String.valueOf(peliculas.toArray().length));
+
+        //navigationbar
+        getWindow().setNavigationBarColor(getColor(R.color.rosa));
 
         //para que a darle al boton de abajo a la derecha aparezca o desaparezca la actionbar
         FloatingActionButton floatingActionButton = findViewById(R.id.fazoom);
@@ -70,8 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -84,8 +87,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         int id = item.getItemId();
-        if(id == R.id.mvista){
-
+        if(id == R.id.minformacion){
+            Intent intentInformacion = new Intent(MainActivity.this, InformacionPeliculas.class);
+            startActivity(intentInformacion);
+            return true;
+        } else if(id == R.id.manadir){
+            Intent intentNuevaPeli = new Intent(MainActivity.this, NuevaPelicula.class);
+            startActivity(intentNuevaPeli);
+            return true;
+        } else if(id == R.id.mfavoritos){
+            Intent intentFavoritos = new Intent(MainActivity.this, PeliculasFavoritas.class);
+            startActivity(intentFavoritos);
             return true;
         };
         return super.onOptionsItemSelected(item);

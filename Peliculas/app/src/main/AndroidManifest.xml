@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Peliculas">
         <activity
+            android:name=".PeliculasFavoritas"
+            android:exported="false" />
+        <activity
+            android:name=".NuevaPelicula"
+            android:exported="false" />
+        <activity
+            android:name=".InformacionPeliculas"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
