@@ -36,6 +36,8 @@ public class InformacionPeliculas extends AppCompatActivity {
         //Informacion del array para el rv
         Datos datos = new Datos();
         ArrayList<Pelicula> peliculas = datos.rellenaPeliculas();
+
+        //declarar el rv
         RecyclerView rvinformacion = findViewById(R.id.rvinformacion);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1);
         rvinformacion.setLayoutManager(gridLayoutManager);

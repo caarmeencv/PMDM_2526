@@ -32,9 +32,9 @@ public class AdaptadorInformacion extends RecyclerView.Adapter<AdaptadorInformac
         holder.clasi.setImageResource(pelicula.getClasi());
         holder.titulo.setText(pelicula.getTitulo());
         holder.director.setText(pelicula.getDirector());
-        holder.duracion.setText(pelicula.getDuracion());
+        holder.duracion.setText(String.valueOf(pelicula.getDuracion()));
         holder.sala.setText(pelicula.getSala());
-
+        holder.fecha.setText(String.valueOf(pelicula.getFecha()));
     }
 
     @Override
@@ -44,7 +44,7 @@ public class AdaptadorInformacion extends RecyclerView.Adapter<AdaptadorInformac
 
     public class celdaInformacionjava extends RecyclerView.ViewHolder {
 
-        TextView titulo, director, duracion, sala;
+        TextView titulo, director, duracion, sala, fecha;
         ImageView portada, clasi;
 
         public celdaInformacionjava(@NonNull View itemView) {
@@ -55,6 +55,7 @@ public class AdaptadorInformacion extends RecyclerView.Adapter<AdaptadorInformac
             this.clasi=itemView.findViewById(R.id.ivclasi2);
             this.duracion=itemView.findViewById(R.id.tvduracion2);
             this.sala=itemView.findViewById(R.id.tvsala2);
+            this.fecha=itemView.findViewById(R.id.tvfecha2);
 
         }
 
@@ -104,6 +105,14 @@ public class AdaptadorInformacion extends RecyclerView.Adapter<AdaptadorInformac
 
         public void setSala(TextView sala) {
             this.sala = sala;
+        }
+
+        public TextView getFecha() {
+            return fecha;
+        }
+
+        public void setFecha(TextView fecha) {
+            this.fecha = fecha;
         }
 
 
