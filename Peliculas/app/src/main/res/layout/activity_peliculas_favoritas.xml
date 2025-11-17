@@ -8,4 +8,12 @@
     android:background="@color/fondo"
     tools:context=".PeliculasFavoritas">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvfavoritos"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

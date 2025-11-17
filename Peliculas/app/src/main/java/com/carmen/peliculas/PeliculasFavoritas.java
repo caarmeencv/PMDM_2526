@@ -1,7 +1,10 @@
 package com.carmen.peliculas;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.activity.EdgeToEdge;
@@ -10,6 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class PeliculasFavoritas extends AppCompatActivity {
 
@@ -28,6 +35,17 @@ public class PeliculasFavoritas extends AppCompatActivity {
             return insets;
         });
 
+        //Informacion del array para el rv
+        Datos datos = new Datos();
+        ArrayList<Pelicula> peliculas = datos.rellenaPeliculas();
+
+        //declarar el rv
+        RecyclerView rvfavoritos = findViewById(R.id.rvfavoritos);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1);
+        rvfavoritos.setLayoutManager(gridLayoutManager);
+        AdaptadorFavoritos adaptadorFavoritos = new AdaptadorFavoritos(peliculas);
+        rvfavoritos.setAdapter(adaptadorFavoritos);
+
         ActionBar actionbar = getSupportActionBar();
         actionbar.setBackgroundDrawable(getResources().getDrawable(R.drawable.fondomenu, getTheme()));
         actionbar.setTitle("Peliculas");
@@ -45,6 +63,12 @@ public class PeliculasFavoritas extends AppCompatActivity {
             getOnBackPressedDispatcher().onBackPressed();
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.secundario, menu);
+        return true;
     }
 
 }

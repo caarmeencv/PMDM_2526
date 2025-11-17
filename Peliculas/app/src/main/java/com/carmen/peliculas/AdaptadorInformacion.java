@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class AdaptadorInformacion extends RecyclerView.Adapter<AdaptadorInformacion.celdaInformacionjava>{
@@ -34,7 +35,9 @@ public class AdaptadorInformacion extends RecyclerView.Adapter<AdaptadorInformac
         holder.director.setText(pelicula.getDirector());
         holder.duracion.setText(String.valueOf(pelicula.getDuracion()));
         holder.sala.setText(pelicula.getSala());
-        holder.fecha.setText(String.valueOf(pelicula.getFecha()));
+        //holder.fecha.setText(String.valueOf(pelicula.getFecha()));
+        SimpleDateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
+        holder.fecha.setText(dateformat.format(pelicula.getFecha())) ;
     }
 
     @Override

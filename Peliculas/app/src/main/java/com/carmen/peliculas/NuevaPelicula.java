@@ -2,6 +2,8 @@ package com.carmen.peliculas;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.activity.EdgeToEdge;
@@ -30,7 +32,7 @@ public class NuevaPelicula extends AppCompatActivity {
 
         ActionBar actionbar = getSupportActionBar();
         actionbar.setBackgroundDrawable(getResources().getDrawable(R.drawable.fondomenu, getTheme()));
-        actionbar.setTitle("Peliculas");
+        actionbar.setTitle(R.string.nuevapeli);
         getWindow().setNavigationBarColor(getColor(R.color.rosa));
 
         //boton de volver, la funcion de este boton esta mas abajo en onOptionsItemSelected
@@ -45,6 +47,13 @@ public class NuevaPelicula extends AppCompatActivity {
             getOnBackPressedDispatcher().onBackPressed();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.secundario, menu);
+        return true;
     }
 
 }

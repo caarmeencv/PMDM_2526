@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
         ActionBar actionbar = getSupportActionBar();
         actionbar.setBackgroundDrawable(getResources().getDrawable(R.drawable.fondomenu, getTheme()));
-        actionbar.setTitle("Peliculas");
 
         //para que me salga el numero de peliculas como subtitulo
         actionbar.setSubtitle(String.valueOf(peliculas.toArray().length));
@@ -98,6 +97,12 @@ public class MainActivity extends AppCompatActivity {
         } else if(id == R.id.mfavoritos){
             Intent intentFavoritos = new Intent(MainActivity.this, PeliculasFavoritas.class);
             startActivity(intentFavoritos);
+            return true;
+        }else if(id == R.id.mverfav){
+
+            return true;
+        } else if(id == R.id.mvista){
+
             return true;
         };
         return super.onOptionsItemSelected(item);
