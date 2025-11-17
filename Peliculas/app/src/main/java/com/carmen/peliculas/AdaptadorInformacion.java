@@ -38,6 +38,14 @@ public class AdaptadorInformacion extends RecyclerView.Adapter<AdaptadorInformac
         //holder.fecha.setText(String.valueOf(pelicula.getFecha()));
         SimpleDateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
         holder.fecha.setText(dateformat.format(pelicula.getFecha())) ;
+
+        if (pelicula.getFavorita()) {
+            holder.favorita.setVisibility(View.VISIBLE);
+        } else {
+            holder.favorita.setVisibility(View.GONE);
+        }
+
+
     }
 
     @Override
@@ -48,7 +56,7 @@ public class AdaptadorInformacion extends RecyclerView.Adapter<AdaptadorInformac
     public class celdaInformacionjava extends RecyclerView.ViewHolder {
 
         TextView titulo, director, duracion, sala, fecha;
-        ImageView portada, clasi;
+        ImageView portada, clasi, favorita;
 
         public celdaInformacionjava(@NonNull View itemView) {
             super(itemView);
@@ -59,6 +67,7 @@ public class AdaptadorInformacion extends RecyclerView.Adapter<AdaptadorInformac
             this.duracion=itemView.findViewById(R.id.tvduracion2);
             this.sala=itemView.findViewById(R.id.tvsala2);
             this.fecha=itemView.findViewById(R.id.tvfecha2);
+            this.favorita=itemView.findViewById(R.id.ivfav);
 
         }
 
@@ -116,6 +125,13 @@ public class AdaptadorInformacion extends RecyclerView.Adapter<AdaptadorInformac
 
         public void setFecha(TextView fecha) {
             this.fecha = fecha;
+        }
+        public ImageView getFavorita() {
+            return favorita;
+        }
+
+        public void setFavorita(ImageView favorita) {
+            this.favorita = favorita;
         }
 
 
