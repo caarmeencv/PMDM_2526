@@ -1,11 +1,11 @@
 package com.carmen.peliculas;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
@@ -13,47 +13,58 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class PeliculasFavoritas extends AppCompatActivity {
+public class ExtraActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //intent para que cambie de activity desde la primaria
-        Intent intentFavoritos  = getIntent();
+        //intent para que cambie de activity desde la de informacion
+        Intent intentExtra  = getIntent();
 
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_peliculas_favoritas);
+        setContentView(R.layout.activity_extra);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        //Informacion del array para el rv
         Datos datos = new Datos();
         ArrayList<Pelicula> peliculas = datos.rellenaPeliculas();
 
-        //declarar el rv
-        RecyclerView rvfavoritos = findViewById(R.id.rvfavoritos);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1);
-        rvfavoritos.setLayoutManager(gridLayoutManager);
-        AdaptadorFavoritos adaptadorFavoritos = new AdaptadorFavoritos(peliculas);
-        rvfavoritos.setAdapter(adaptadorFavoritos);
-
+        //actionbar
         ActionBar actionbar = getSupportActionBar();
         actionbar.setBackgroundDrawable(getResources().getDrawable(R.drawable.fondomenu, getTheme()));
-        actionbar.setTitle("Peliculas");
         getWindow().setNavigationBarColor(getColor(R.color.rosa));
 
         //boton de volver, la funcion de este boton esta mas abajo en onOptionsItemSelected
         actionbar.setDisplayHomeAsUpEnabled(true);
 
+        ImageView ivportadaextra = findViewById(R.id.ivportadaextra);
+        ScrollView scrollView = findViewById(R.id.scrollView2);
+        TextView tvsinopsis = findViewById(R.id.tvsinopsis);
+
+        //Para poner los datos de la pelicula selecionada en el rvinformacion
+        int pos = getIntent().getIntExtra("pos", -1);
+        if (pos >= 0 && pos < peliculas.size()) {
+            Pelicula pelicula = peliculas.get(pos);
+            ivportadaextra.setImageResource(pelicula.getPortada());
+            tvsinopsis.setText(pelicula.getSinopsis());
+            actionbar.setTitle(pelicula.getTitulo());
+
+            //abrir el idyoutube al pulsar la imagen
+            ivportadaextra.setOnClickListener(view -> {
+                String url = "https://www.youtube.com/watch?v=" + pelicula.getIdYoutube();
+                Intent intentyoutube = new Intent(Intent.ACTION_VIEW);
+                intentyoutube.setData(android.net.Uri.parse(url));
+                startActivity(intentyoutube);
+            });
+
+        }
     }
 
     //funcion del boton de volver en el actionbar
@@ -64,12 +75,5 @@ public class PeliculasFavoritas extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.secundario, menu);
-        return true;
-    }
-
 
 }

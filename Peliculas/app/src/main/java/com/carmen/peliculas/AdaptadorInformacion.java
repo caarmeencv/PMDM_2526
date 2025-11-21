@@ -1,8 +1,13 @@
 package com.carmen.peliculas;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -16,6 +21,31 @@ public class AdaptadorInformacion extends RecyclerView.Adapter<AdaptadorInformac
     List<Pelicula> peliculas;
     public AdaptadorInformacion (List<Pelicula> peliculas){
         this.peliculas = peliculas;
+    }
+
+    //para seleccionar elementos de la rv
+    int selectedPos = RecyclerView.NO_POSITION;
+    public int getSelectedPos () {
+        return selectedPos;
+    }
+
+    public void setSelectedPos(int nuevaPos) {
+        // Si se pulsa sobre el elemento marcado
+        if (nuevaPos == this.selectedPos){
+            // Se establece que no hay una posición marcada
+            this.selectedPos=RecyclerView.NO_POSITION;
+            // Se avisa al adaptador para que desmarque esa posición
+            notifyItemChanged(nuevaPos);
+        } else { // El elemento pulsado no está marcado
+            if (this.selectedPos >=0 ) { // Si ya hay otra posición marcada
+                // Se desmarca
+                notifyItemChanged(this.selectedPos);
+            }
+            // Se actualiza la nueva posición a la posición pulsada
+            this.selectedPos = nuevaPos;
+            // Se marca la nueva posición
+            notifyItemChanged(nuevaPos);
+        }
     }
 
     @NonNull
@@ -35,6 +65,7 @@ public class AdaptadorInformacion extends RecyclerView.Adapter<AdaptadorInformac
         holder.director.setText(pelicula.getDirector());
         holder.duracion.setText(String.valueOf(pelicula.getDuracion()));
         holder.sala.setText(pelicula.getSala());
+//        holder.sinopsis.setText(pelicula.getSinopsis());
         //holder.fecha.setText(String.valueOf(pelicula.getFecha()));
         SimpleDateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
         holder.fecha.setText(dateformat.format(pelicula.getFecha())) ;
@@ -45,6 +76,13 @@ public class AdaptadorInformacion extends RecyclerView.Adapter<AdaptadorInformac
             holder.favorita.setVisibility(View.GONE);
         }
 
+        //para seleccionar un elemento
+        if (selectedPos == position) {
+            holder.itemView.setBackgroundResource(R.color.seleccionado);
+
+        } else {
+            holder.itemView.setBackgroundResource(R.color.celda);
+        }
 
     }
 
@@ -68,6 +106,30 @@ public class AdaptadorInformacion extends RecyclerView.Adapter<AdaptadorInformac
             this.sala=itemView.findViewById(R.id.tvsala2);
             this.fecha=itemView.findViewById(R.id.tvfecha2);
             this.favorita=itemView.findViewById(R.id.ivfav);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @ Override
+                public void onClick (View view) {
+                    //getAdapterPosition devuelve la posición del view en el adaptador
+                    int posPulsada=getAdapterPosition();
+                    setSelectedPos(posPulsada);
+
+                    //If-Else para que al pulsar se cambie el tvfilm de arriba
+                    if(selectedPos > RecyclerView.NO_POSITION){
+                        InformacionPeliculas informacionPeliculas = (InformacionPeliculas) view.getContext();
+                        Intent intentExtra = new Intent(informacionPeliculas, ExtraActivity.class);
+                        intentExtra.putExtra("pos", selectedPos);
+                        informacionPeliculas.startActivity(intentExtra);
+
+//                        intentExtra.putExtra("portada", peliculas.get(selectedPos).getPortada());
+//                        view.getContext().startActivity(intentExtra);
+//
+//                        intentExtra.putExtra("sinopsis", peliculas.get(selectedPos).getSinopsis());
+//                        view.getContext().startActivity(intentExtra);
+
+                    }
+                }
+            } );
 
         }
 

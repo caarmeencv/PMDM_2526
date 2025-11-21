@@ -13,4 +13,5 @@
     <color name="celda">#DCFDBB</color>
     <color name="rosa">#F8E1F0</color>
     <color name ="seleccionado">#BFD9A7</color>
+    <color name ="seleccionfavoritos">#D693E9</color>
 </resources>

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Peliculas">
         <activity
+            android:name=".ExtraActivity"
+            android:exported="false" />
+        <activity
             android:name=".PeliculasFavoritas"
             android:exported="false" />
         <activity
