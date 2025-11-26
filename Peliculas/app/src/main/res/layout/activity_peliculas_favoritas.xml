@@ -8,10 +8,13 @@
     android:background="@color/fondo"
     tools:context=".PeliculasFavoritas">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvfavoritos"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+    <ListView
+        android:id="@+id/lv"
+        android:layout_width="409dp"
+        android:layout_height="673dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

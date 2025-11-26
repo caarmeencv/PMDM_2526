@@ -14,11 +14,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdaptadorInformacion extends RecyclerView.Adapter<AdaptadorInformacion.celdaInformacionjava>{
 
     List<Pelicula> peliculas;
+    ArrayList<Pelicula> favoritasArray;
     public AdaptadorInformacion (List<Pelicula> peliculas){
         this.peliculas = peliculas;
     }
@@ -75,7 +77,6 @@ public class AdaptadorInformacion extends RecyclerView.Adapter<AdaptadorInformac
         } else {
             holder.favorita.setVisibility(View.GONE);
         }
-
         //para seleccionar un elemento
         if (selectedPos == position) {
             holder.itemView.setBackgroundResource(R.color.seleccionado);

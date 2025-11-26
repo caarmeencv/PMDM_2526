@@ -6,13 +6,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.SeekBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,13 +17,15 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    ArrayList<Pelicula> peliculas = new ArrayList<>();
+    ArrayList<Pelicula> favoritasArray = new ArrayList<>();
+    GridLayoutManager gridLayoutManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Datos datos = new Datos();
-        ArrayList<Pelicula> peliculas = datos.rellenaPeliculas();
+        peliculas = datos.rellenaPeliculas();
+
         RecyclerView rv = findViewById(R.id.rv);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1);
         rv.setLayoutManager(gridLayoutManager);
@@ -49,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         rv.setAdapter(adaptadorPelicula);
 
         //actionbar
-
         ActionBar actionbar = getSupportActionBar();
         actionbar.setBackgroundDrawable(getResources().getDrawable(R.drawable.fondomenu, getTheme()));
 
@@ -64,17 +62,30 @@ public class MainActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(actionbar.isShowing()){
+                if (actionbar.isShowing()) {
                     actionbar.hide();
-                } else{
+                } else {
                     actionbar.show();
                 }
             }
         });
-
-
-
     }
+
+    private ActivityResultLauncher<Intent> launcher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    ArrayList<Pelicula> favoritasRecibidas =
+                            (ArrayList<Pelicula>) result.getData().getSerializableExtra("favoritasArray");
+
+                    if (favoritasRecibidas != null) {
+                        favoritasArray = favoritasRecibidas; // actualizamos favoritasArray directamente
+                    }
+                }
+            }
+    );
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater menuInflater = getMenuInflater();
@@ -94,14 +105,17 @@ public class MainActivity extends AppCompatActivity {
             Intent intentNuevaPeli = new Intent(MainActivity.this, NuevaPelicula.class);
             startActivity(intentNuevaPeli);
             return true;
-        } else if(id == R.id.mfavoritos){
-            Intent intentFavoritos = new Intent(MainActivity.this, PeliculasFavoritas.class);
-            startActivity(intentFavoritos);
-            return true;
-        }else if(id == R.id.mverfav){
+        } else if (id == R.id.mfavoritos) {
+            Intent intentFavoritos = new Intent(this, PeliculasFavoritas.class);
+            intentFavoritos.putExtra("peliculas", peliculas);
+            intentFavoritos.putExtra("favoritasArray", favoritasArray);
+            launcher.launch(intentFavoritos);
+        return super.onOptionsItemSelected(item);
+        } else if(id == R.id.mverfav){
 
             return true;
         } else if(id == R.id.mvista){
+
 
             return true;
         };
