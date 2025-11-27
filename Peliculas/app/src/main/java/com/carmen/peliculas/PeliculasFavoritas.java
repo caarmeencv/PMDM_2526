@@ -55,6 +55,7 @@ public class PeliculasFavoritas extends AppCompatActivity {
         ArrayList<String> titulos = new ArrayList<>();
         for (Pelicula peli : peliculas) {
             titulos.add(peli.getTitulo() + "\n" + peli.getDirector());
+
         }
 
         ListView lv = findViewById(R.id.lv);
