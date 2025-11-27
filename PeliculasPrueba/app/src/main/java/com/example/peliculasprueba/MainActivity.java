@@ -2,6 +2,7 @@ package com.example.peliculasprueba;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
@@ -11,6 +12,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -51,9 +54,22 @@ public class MainActivity extends AppCompatActivity {
         AdaptadorPelicula adaptadorPelicula = new AdaptadorPelicula(peliculas);
         rv.setAdapter(adaptadorPelicula);
 
+        //Cambio el color de la navigation bar
+        getWindow().setNavigationBarColor(getColor(R.color.rosa));
+
         //Declarar el floating action button (fazoom) y poner la accion de
         // que al ser pulsado aparece y desaparece la actionbar
-
+        FloatingActionButton floatingActionButton = findViewById(R.id.fazoom);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (actionbar.isShowing()) {
+                    actionbar.hide();
+                } else {
+                    actionbar.show();
+                }
+            }
+        });
 
     }
 }
