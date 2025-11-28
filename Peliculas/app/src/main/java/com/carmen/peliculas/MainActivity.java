@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -26,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Pelicula> favoritasArray = new ArrayList<>();
     GridLayoutManager gridLayoutManager;
 
+    boolean vista = false;
+
+    ActionBar actionbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +48,13 @@ public class MainActivity extends AppCompatActivity {
         peliculas = datos.rellenaPeliculas();
 
         RecyclerView rv = findViewById(R.id.rv);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1);
+        gridLayoutManager = new GridLayoutManager(this, 1);
         rv.setLayoutManager(gridLayoutManager);
         AdaptadorPelicula adaptadorPelicula = new AdaptadorPelicula(peliculas);
         rv.setAdapter(adaptadorPelicula);
 
         //actionbar
-        ActionBar actionbar = getSupportActionBar();
+        actionbar = getSupportActionBar();
         actionbar.setBackgroundDrawable(getResources().getDrawable(R.drawable.fondomenu, getTheme()));
 
         //para que me salga el numero de peliculas como subtitulo
@@ -115,9 +121,20 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         } else if(id == R.id.mvista){
+            vista = !vista;
+            gridLayoutManager.setSpanCount(vista ? 2 : 1);
+            gridLayoutManager.requestLayout();
+            //return true;
 
+            if(vista){
 
-            return true;
+                item.setIcon(R.drawable.ic_two);
+
+            } else {
+
+                item.setIcon(R.drawable.ic_one);
+
+            }
         };
         return super.onOptionsItemSelected(item);
     }
