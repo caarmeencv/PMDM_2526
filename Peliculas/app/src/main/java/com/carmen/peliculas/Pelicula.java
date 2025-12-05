@@ -25,6 +25,9 @@ public class Pelicula implements Serializable{
         this.favorita=false;
     }
 
+    public Pelicula(String titulo, String director, int duracion, String sala, String clasificacion) {
+    }
+
     public String getIdYoutube() {
         return idYoutube;
     }

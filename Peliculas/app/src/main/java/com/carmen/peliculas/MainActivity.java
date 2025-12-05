@@ -63,6 +63,20 @@ public class MainActivity extends AppCompatActivity {
         //navigationbar
         getWindow().setNavigationBarColor(getColor(R.color.rosa));
 
+        ActivityResultLauncher<Intent> nuevaPeliculaLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        Pelicula p = (Pelicula) result.getData().getSerializableExtra("nueva_pelicula");
+                        if (p != null) {
+                            peliculas.add(p);
+                            adaptadorPelicula.notifyItemInserted(peliculas.size() - 1);
+                            rv.scrollToPosition(peliculas.size() - 1);
+                        }
+                    }
+                }
+        );
+
         //para que a darle al boton de abajo a la derecha aparezca o desaparezca la actionbar
         FloatingActionButton floatingActionButton = findViewById(R.id.fazoom);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {

@@ -81,6 +81,8 @@ public class PeliculasFavoritas extends AppCompatActivity {
         //boton de volver, la funcion de este boton esta mas abajo en onOptionsItemSelected
         actionbar.setDisplayHomeAsUpEnabled(true);
 
+
+
     }
 
     //funcion del boton de volver en el actionbar
