@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name" translatable="false">Carmen Calo Vazquez</string>
+    <string name="tituloactionbar">Ben Y Holly</string>
+    <string name="grid" translatable="false">GRID</string>
+    <string name="anadir">AÑADIR</string>
+    <string name="log" translatable="false">LOG</string>
+    <string name="guardar">GUARDAR</string>
+    <string name="nombreadd">Nombre</string>
+    <string name="descripcionadd">Descripcion</string>
+    <string name="aparicionesadd">Apariciones</string>
+    <string name="toastlog">Generando log</string>
+    <string name="salir">Salir</string>
+    <string name="preguntasalir">¿Quieres salir?</string>
+    <string name="postponer">POSTPONER</string>
+    <string name="cancelar">CANCELAR</string>
+    <string name="salirrespuesta">SALIR</string>
+    <string name="neutro">Neutro</string>
+    <string name="positivo">Positivo</string>
+    <string name="negativo">Negativo</string>
+</resources>

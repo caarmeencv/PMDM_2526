@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tituloactionbar">Ben and Holly</string>
+    <string name="anadir">ADD</string>
+    <string name="guardar">SAVE</string>
+    <string name="nombreadd">Name</string>
+    <string name="descripcionadd">Description</string>
+    <string name="aparicionesadd">Aparitions</string>
+    <string name="toastlog">Generating log</string>
+    <string name="salir">Exit</string>
+    <string name="preguntasalir">Do you want to exit?</string>
+    <string name="postponer">NOT YET</string>
+    <string name="cancelar">CANCEL</string>
+    <string name="salirrespuesta">EXIT</string>
+    <string name="neutro">Neutro</string>
+    <string name="positivo">Positive</string>
+    <string name="negativo">Negative</string>
+</resources>
