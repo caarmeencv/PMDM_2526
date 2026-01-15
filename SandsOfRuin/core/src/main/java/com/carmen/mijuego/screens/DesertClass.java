@@ -25,15 +25,15 @@ public class DesertClass implements Screen {
     public DesertClass(Main game) {
         this.game = game;
 
-        ayla = new Texture("ayla_defrente.png");
+        ayla = new Texture("characters/ayla/ayla_defrente.png");
         x = 100;
         y = 50;
 
-        cielo  = new Texture("fondos/05cielo.png");
-        nubes  = new Texture("fondos/04nubes.png");
-        ruinas = new Texture("fondos/03ruinas.png");
-        medio  = new Texture("fondos/02medio.png");
-        cerca  = new Texture("fondos/01cerca.png");
+        cielo  = new Texture("backgrounds/desert/05cielo.png");
+        nubes  = new Texture("backgrounds/desert/04nubes.png");
+        ruinas = new Texture("backgrounds/desert/03ruinas.png");
+        medio  = new Texture("backgrounds/desert/02medio.png");
+        cerca  = new Texture("backgrounds/desert/01cerca.png");
     }
 
     @Override
