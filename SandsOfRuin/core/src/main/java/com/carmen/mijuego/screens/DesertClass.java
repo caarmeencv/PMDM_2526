@@ -15,7 +15,6 @@ public class DesertClass implements Screen {
     private final Main game;
 
     // ===== MUNDO VIRTUAL =====
-    // Estas son las coordenadas con las que trabajas SIEMPRE
     private static final float WORLD_WIDTH = 1280f;
     private static final float WORLD_HEIGHT = 720f;
 
@@ -34,6 +33,14 @@ public class DesertClass implements Screen {
     private float xNubes, xRuinas, xMedio, xCerca;
     private float vNubes = 20f, vRuinas = 40f, vMedio = 80f, vCerca = 120f;
 
+    // ===== CONTROLES (solo visual) =====
+    private Texture btnLeft, btnRight, btnGrenade, btnShoot, btnJump;
+
+    // Tamaños UI (en coordenadas del mundo)
+    private float uiSize;   // tamaño del botón
+    private float uiMargin; // margen a borde
+    private float uiGap;    // separación
+
     public DesertClass(Main game) {
         this.game = game;
 
@@ -43,13 +50,22 @@ public class DesertClass implements Screen {
         viewport.apply();
         camera.position.set(WORLD_WIDTH / 2f, WORLD_HEIGHT / 2f, 0);
 
-        // Texturas
+        // Texturas fondos
         cielo  = new Texture("backgrounds/desert/05cielo.png");
         nubes  = new Texture("backgrounds/desert/04nubes.png");
         ruinas = new Texture("backgrounds/desert/03ruinas.png");
         medio  = new Texture("backgrounds/desert/02medio.png");
         cerca  = new Texture("backgrounds/desert/01cerca.png");
+
+        // Personaje
         ayla   = new Texture("characters/ayla/ayla_defrente.png");
+
+        // Controles (assets/controls/...)
+        btnLeft    = new Texture("ui/controls/btn_move_left.png");
+        btnRight   = new Texture("ui/controls/btn_move_right.png");
+        btnGrenade = new Texture("ui/controls/btn_grenade.png");
+        btnShoot   = new Texture("ui/controls/btn_shoot.png");
+        btnJump    = new Texture("ui/controls/btn_jump.png");
 
         // Filtros para escalado limpio
         setLinear(cielo);
@@ -59,9 +75,20 @@ public class DesertClass implements Screen {
         setLinear(cerca);
         setLinear(ayla);
 
+        setLinear(btnLeft);
+        setLinear(btnRight);
+        setLinear(btnGrenade);
+        setLinear(btnShoot);
+        setLinear(btnJump);
+
         // Posición inicial personaje
         x = 120;
         y = 80;
+
+        // Tamaños de UI
+        uiSize = 120f;   // tamaño del botón (en mundo 1280x720)
+        uiMargin = 25f;  // margen desde el borde
+        uiGap = 18f;     // separación entre botones
     }
 
     private void setLinear(Texture t) {
@@ -85,10 +112,13 @@ public class DesertClass implements Screen {
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
 
+        float worldW = viewport.getWorldWidth();
+        float worldH = viewport.getWorldHeight();
+
         game.batch.begin();
 
         // Cielo ocupa TODO el mundo
-        game.batch.draw(cielo, 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
+        game.batch.draw(cielo, 0, 0, worldW, worldH);
 
         drawLayer(nubes,  xNubes);
         drawLayer(ruinas, xRuinas);
@@ -104,6 +134,36 @@ public class DesertClass implements Screen {
             ayla.getWidth() * scale,
             ayla.getHeight() * scale
         );
+
+        // ===== DIBUJAR CONTROLES (sin funcionalidad) =====
+
+        // Left (esquina inferior izquierda)
+        float leftX = uiMargin;
+        float leftY = uiMargin;
+
+        // Granada encima de Left
+        float grenadeX = leftX;
+        float grenadeY = leftY + uiSize + uiGap;
+
+        // Right (esquina inferior derecha)
+        float rightX = worldW - uiMargin - uiSize;
+        float rightY = uiMargin;
+
+        // Jump encima de Right
+        float jumpX = rightX;
+        float jumpY = rightY + uiSize + uiGap;
+
+        // Shoot a la izquierda de Right
+        float shootX = rightX - uiGap - uiSize;
+        float shootY = rightY;
+
+        // Dibujar (mismo tamaño para todos)
+        game.batch.draw(btnLeft, leftX, leftY, uiSize, uiSize);
+        game.batch.draw(btnGrenade, grenadeX, grenadeY, uiSize, uiSize);
+
+        game.batch.draw(btnRight, rightX, rightY, uiSize, uiSize);
+        game.batch.draw(btnJump, jumpX, jumpY, uiSize, uiSize);
+        game.batch.draw(btnShoot, shootX, shootY, uiSize, uiSize);
 
         game.batch.end();
     }
@@ -137,6 +197,12 @@ public class DesertClass implements Screen {
         medio.dispose();
         cerca.dispose();
         ayla.dispose();
+
+        btnLeft.dispose();
+        btnRight.dispose();
+        btnGrenade.dispose();
+        btnShoot.dispose();
+        btnJump.dispose();
     }
 
     @Override public void show() {}
