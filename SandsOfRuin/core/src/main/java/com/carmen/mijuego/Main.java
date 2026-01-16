@@ -11,14 +11,12 @@ public class Main extends Game {
     @Override
     public void create() {
         batch = new SpriteBatch();
-
-        // Pantalla inicial del juego
         setScreen(new DesertClass(this));
     }
 
     @Override
     public void dispose() {
-        batch.dispose();
+        if (batch != null) batch.dispose();
         super.dispose();
     }
 }
