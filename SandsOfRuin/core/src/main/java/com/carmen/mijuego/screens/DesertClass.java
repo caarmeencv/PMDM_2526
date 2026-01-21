@@ -19,17 +19,22 @@ public class DesertClass implements Screen {
     private static final float WORLD_WIDTH = 1280f;
     private static final float WORLD_HEIGHT = 720f;
 
+    private static final float GROUND_Y = 120f;
+
     private OrthographicCamera camera;
     private Viewport viewport;
 
     private Texture cielo, nubes, ruinas, medio, cerca;
-
     private Ayla ayla;
 
+    // offsets parallax
     private float xNubes, xRuinas, xMedio, xCerca;
-    private float vNubes = 20f, vRuinas = 40f, vMedio = 80f, vCerca = 120f;
 
     private Controls controls;
+
+    private boolean intro = true;
+    private float introTargetX = 120f;
+    private float introSpawnX  = -350f;
 
     public DesertClass(Main game) {
         this.game = game;
@@ -51,7 +56,7 @@ public class DesertClass implements Screen {
         setLinear(medio);
         setLinear(cerca);
 
-        ayla = new Ayla(120, 80);
+        ayla = new Ayla(introSpawnX, GROUND_Y);
 
         controls = new Controls(viewport);
         Gdx.input.setInputProcessor(controls);
@@ -67,13 +72,27 @@ public class DesertClass implements Screen {
 
         boolean moveRight = Gdx.input.isKeyPressed(Input.Keys.RIGHT) || controls.rightPressed;
         boolean moveLeft  = Gdx.input.isKeyPressed(Input.Keys.LEFT)  || controls.leftPressed;
+        boolean jump      = Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || controls.jumpPressed;
 
-        ayla.update(delta, moveLeft, moveRight);
+        if (intro) {
+            moveLeft = false;
+            moveRight = true;
+            jump = false;
 
-        xNubes  -= vNubes  * delta;
-        xRuinas -= vRuinas * delta;
-        xMedio  -= vMedio  * delta;
-        xCerca  -= vCerca  * delta;
+            if (ayla.getX() >= introTargetX) {
+                intro = false;
+                moveRight = false;
+            }
+        }
+
+        ayla.update(delta, moveLeft, moveRight, jump, GROUND_Y);
+
+        float dx = ayla.getLastDx();
+
+        xNubes  -= dx * 0.15f;
+        xRuinas -= dx * 0.30f;
+        xMedio  -= dx * 0.60f;
+        xCerca  -= dx * 0.90f;
 
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
@@ -93,7 +112,6 @@ public class DesertClass implements Screen {
         drawLayer(cerca,  xCerca);
 
         ayla.draw(game.batch);
-
         controls.draw(game.batch);
 
         game.batch.end();
@@ -114,10 +132,11 @@ public class DesertClass implements Screen {
         }
     }
 
-    @Override
-    public void resize(int width, int height) {
-        viewport.update(width, height, true);
-    }
+    @Override public void resize(int width, int height) { viewport.update(width, height, true); }
+    @Override public void show() {}
+    @Override public void pause() {}
+    @Override public void resume() {}
+    @Override public void hide() {}
 
     @Override
     public void dispose() {
@@ -126,13 +145,7 @@ public class DesertClass implements Screen {
         ruinas.dispose();
         medio.dispose();
         cerca.dispose();
-
         ayla.dispose();
         controls.dispose();
     }
-
-    @Override public void show() {}
-    @Override public void pause() {}
-    @Override public void resume() {}
-    @Override public void hide() {}
 }
